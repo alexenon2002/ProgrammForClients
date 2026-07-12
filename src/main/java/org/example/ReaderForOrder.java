@@ -5,6 +5,6 @@ import java.util.List;
 
 public interface ReaderForOrder {
 
-        List<Order> read(String fileName) throws IOException;
+        List<Order> catalog(String fileName) throws IOException;
 
 }

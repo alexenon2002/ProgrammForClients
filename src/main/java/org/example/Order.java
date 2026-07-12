@@ -2,25 +2,25 @@ package org.example;
 
 public class Order {
 
-    private final String data;
-    private final String clients;
-    private final int mass;
+    private final String dateOfPurchaseOfCement;
+    private final String buyer;
+    private final int numberOfKilograms;
 
-    public Order(String data, String clients, int mass) {
-        this.data = data;
-        this.clients = clients;
-        this.mass = mass;
+    public Order(String dateOfPurchaseOfCement, String buyer, int numberOfKilograms) {
+        this.dateOfPurchaseOfCement = dateOfPurchaseOfCement;
+        this.buyer = buyer;
+        this.numberOfKilograms = numberOfKilograms;
     }
 
-    public String getData() {
-        return data;
+    public String getDateOfPurchaseOfCement() {
+        return dateOfPurchaseOfCement;
     }
 
-    public String getClients() {
-        return clients;
+    public String getBuyer() {
+        return buyer;
     }
 
-    public int getMass() {
-        return mass;
+    public int getNumberOfKilograms() {
+        return numberOfKilograms;
     }
 }

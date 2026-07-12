@@ -5,9 +5,9 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
-public class HashFileReader {
+public class FileWithoutTxt {
 
-    public List<Order> reading(String fileName) throws IOException {
+    public List<Order> decrypts(String fileName) throws IOException {
 
         return Files.lines(Paths.get(fileName))
                 .map(line -> line.split("#"))

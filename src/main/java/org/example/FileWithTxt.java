@@ -8,7 +8,7 @@ import java.util.List;
 public class FileWithTxt implements ReaderForOrder {
 
     @Override
-    public List<Order> read(String fileName) throws IOException {
+    public List<Order> catalog(String fileName) throws IOException {
 
         return Files.lines(Paths.get(fileName))
                 .map(line -> line.split("\\|"))
