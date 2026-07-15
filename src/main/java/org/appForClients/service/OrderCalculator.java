@@ -1,6 +1,8 @@
-package org.example;
+package org.appForClients.service;
 
 
+
+import org.appForClients.model.Order;
 
 import java.util.ArrayList;
 import java.util.Comparator;

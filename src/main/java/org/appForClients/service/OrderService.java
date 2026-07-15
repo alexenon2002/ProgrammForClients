@@ -1,5 +1,9 @@
-package org.example;
+package org.appForClients.service;
 
+
+import org.appForClients.reader.ReaderForOrder;
+import org.appForClients.ResultWriter;
+import org.appForClients.model.Order;
 
 import java.io.IOException;
 import java.util.List;
@@ -14,15 +18,13 @@ public class OrderService {
 
     public void process(String fileName) throws IOException {
 
-        ReaderForOrder reader = fileFilter.create(fileName);
+        ReaderForOrder reader = fileFilter.getReader(fileName);
 
         List<Order> orders = reader.catalog(fileName);
 
         List<String> result = calculator.calculate(orders);
 
         resultWriter.write(result);
-
-        result.forEach(System.out::println);
 
     }
 

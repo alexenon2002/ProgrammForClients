@@ -1,4 +1,6 @@
-package org.example;
+package org.appForClients.reader;
+
+import org.appForClients.model.Order;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -7,14 +9,13 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class FileWithTxt implements ReaderForOrder {
+public class FileWithoutTxt {
 
-    @Override
-    public List<Order> catalog(String fileName) throws IOException {
+    public List<Order> decrypts(String fileName) throws IOException {
 
         try (Stream<String> lines =Files.lines(Paths.get(fileName))) {
             return lines
-                .map(line -> line.split("\\|"))
+                    .map(line -> line.split("#"))
                     .map(name -> new Order(
                             LocalDateTime.parse(name[0]),
                             name[1],

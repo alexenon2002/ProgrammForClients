@@ -1,4 +1,4 @@
-package org.example;
+package org.appForClients.model;
 
 import java.time.LocalDateTime;
 
