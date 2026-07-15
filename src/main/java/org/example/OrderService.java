@@ -10,7 +10,7 @@ public class OrderService {
 
     private final OrderCalculator calculator = new OrderCalculator();
 
-    private final ResultWriter writer = new ResultWriter();
+    private final ResultWriter resultWriter= new ResultWriter();
 
     public void process(String fileName) throws IOException {
 
@@ -20,7 +20,7 @@ public class OrderService {
 
         List<String> result = calculator.calculate(orders);
 
-        writer.write(result);
+        resultWriter.write(result);
 
         result.forEach(System.out::println);
 

@@ -1,18 +1,20 @@
 package org.example;
 
+import java.time.LocalDateTime;
+
 public class Order {
 
-    private final String dateOfPurchaseOfCement;
+    private final LocalDateTime dateOfPurchaseOfCement;
     private final String buyer;
     private final int numberOfKilograms;
 
-    public Order(String dateOfPurchaseOfCement, String buyer, int numberOfKilograms) {
+    public Order(  final LocalDateTime dateOfPurchaseOfCement, String buyer, int numberOfKilograms) {
         this.dateOfPurchaseOfCement = dateOfPurchaseOfCement;
         this.buyer = buyer;
         this.numberOfKilograms = numberOfKilograms;
     }
 
-    public String getDateOfPurchaseOfCement() {
+    public   LocalDateTime getDateOfPurchaseOfCement() {
         return dateOfPurchaseOfCement;
     }
 

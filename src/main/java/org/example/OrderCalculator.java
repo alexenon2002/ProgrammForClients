@@ -1,37 +1,39 @@
 package org.example;
 
-import org.example.Order;
 
+
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class OrderCalculator {
 
+    private static final double BAG_PRICE = 500;
+    private static final int BAG_WEIGHT = 50;
+    private static final int START_DISCOUNT = 50;
+    private static final int DISCOUNT_STEP = 5;
+
     public List<String> calculate(List<Order> orders) {
 
-        AtomicInteger discount = new AtomicInteger(50);
-
-        return orders.stream()
-
+        List<Order> sortedOrders = orders.stream()
                 .sorted(Comparator.comparing(Order::getDateOfPurchaseOfCement))
-
-                .map(order -> {
-
-                    double bags = order.getNumberOfKilograms()/ 50.0;
-
-                    double price = bags * 500;
-
-                    double total = price * (100 - discount.get()) / 100;
-
-                    discount.updateAndGet(d -> Math.max(0, d - 5));
-
-                    return order.getBuyer() + " - " + String.format("%.2f", total);
-
-                })
-
                 .toList();
 
-    }
+        List<String> result = new ArrayList<>();
 
+        int discount = START_DISCOUNT;
+
+        for (Order order : sortedOrders) {
+
+            double bags = (double) order.getNumberOfKilograms() / BAG_WEIGHT;
+            double price = bags * BAG_PRICE;
+            double total = price * (100 - discount) / 100.0;
+
+            result.add(order.getBuyer() + " - " + String.format("%.2f", total));
+
+            discount = Math.max(0, discount - DISCOUNT_STEP);
+        }
+
+        return result;
+    }
 }
