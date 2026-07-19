@@ -1,7 +1,5 @@
 package org.appForClients.service;
 
-
-
 import org.appForClients.model.Order;
 
 import java.util.ArrayList;
@@ -10,12 +8,8 @@ import java.util.List;
 
 public class OrderCalculator {
 
-    private static final double BAG_PRICE = 500;
-    private static final int BAG_WEIGHT = 50;
-    private static final int START_DISCOUNT = 50;
-    private static final int DISCOUNT_STEP = 5;
-
-    public List<String> calculate(List<Order> orders) {
+    public List<String> calculate(List<Order> orders,
+                                  CalculationProgram config) {
 
         List<Order> sortedOrders = orders.stream()
                 .sorted(Comparator.comparing(Order::getDateOfPurchaseOfCement))
@@ -23,17 +17,21 @@ public class OrderCalculator {
 
         List<String> result = new ArrayList<>();
 
-        int discount = START_DISCOUNT;
+        int discount = config.getStartDiscount();
 
         for (Order order : sortedOrders) {
 
-            double bags = (double) order.getNumberOfKilograms() / BAG_WEIGHT;
-            double price = bags * BAG_PRICE;
+            double bags = (double) order.getNumberOfKilograms()
+                    / config.getBagWeight();
+
+            double price = bags * config.getBagPrice();
+
             double total = price * (100 - discount) / 100.0;
 
             result.add(order.getBuyer() + " - " + String.format("%.2f", total));
 
-            discount = Math.max(0, discount - DISCOUNT_STEP);
+            discount = Math.max(0,
+                    discount - config.getDiscountStep());
         }
 
         return result;

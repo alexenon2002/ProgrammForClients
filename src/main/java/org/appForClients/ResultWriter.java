@@ -15,7 +15,7 @@ public class ResultWriter {
 
     public void write(List<String> result) throws IOException {
 
-        String fileName = "result_" +
+        String fileName = FILE_PREFIX +
                 LocalDateTime.now().format(FORMATTER) +
                 ".txt";
 
