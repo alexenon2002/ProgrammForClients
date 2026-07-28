@@ -1,4 +1,4 @@
-package org.appForClients.service;
+package org.appForClients.CalculationFunctional;
 
 import org.appForClients.model.Order;
 
@@ -30,8 +30,7 @@ public class OrderCalculator {
 
             result.add(order.getBuyer() + " - " + String.format("%.2f", total));
 
-            discount = Math.max(0,
-                    discount - config.getDiscountStep());
+            discount = Math.max(0, discount - config.getDiscountStep());
         }
 
         return result;

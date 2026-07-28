@@ -1,6 +1,9 @@
 package org.appForClients.service;
 
-import org.appForClients.ResultWriter;
+import org.appForClients.CalculationFunctional.CalculationProgram;
+import org.appForClients.CalculationFunctional.OrderCalculator;
+import org.appForClients.FileFilter.FileFilter;
+import org.appForClients.ResultWriter.ResultWriter;
 import org.appForClients.model.Order;
 import org.appForClients.reader.ReaderForOrder;
 
@@ -12,6 +15,7 @@ public class OrderService {
     private final FileFilter fileFilter = new FileFilter();
     private final OrderCalculator calculator = new OrderCalculator();
     private final ResultWriter writer = new ResultWriter();
+
 
     public void process(String fileName, CalculationProgram config) throws IOException {
 

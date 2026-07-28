@@ -1,4 +1,4 @@
-package org.appForClients;
+package org.appForClients.ResultWriter;
 
 import java.io.IOException;
 import java.nio.file.Files;

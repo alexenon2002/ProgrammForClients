@@ -1,4 +1,4 @@
-package org.appForClients.service;
+package org.appForClients.FileFilter;
 
 import org.appForClients.adapter.Adapter;
 import org.appForClients.reader.FileWithTxt;

@@ -1,4 +1,4 @@
-package org.appForClients.service;
+package org.appForClients.CalculationFunctional;
 
 public class CalculationProgram{
 

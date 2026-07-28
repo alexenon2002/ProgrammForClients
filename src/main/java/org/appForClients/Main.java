@@ -1,6 +1,6 @@
 package org.appForClients;
 
-import org.appForClients.service.CalculationProgram;
+import org.appForClients.CalculationFunctional.CalculationProgram;
 import org.appForClients.service.OrderService;
 
 import java.io.IOException;
@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+     static void main(String[] args) throws IOException {
 
         CalculationProgram config = new CalculationProgram(
                 500,
