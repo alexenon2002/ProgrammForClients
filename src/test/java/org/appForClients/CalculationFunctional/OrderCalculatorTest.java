@@ -13,7 +13,7 @@ class OrderCalculatorTest {
     @Test
     void calculate() {
 
-//        List<String> newOrders = List.of();
+        List<String> newOrders = List.of();
 
         Order first = new Order(LocalDateTime.of
                 (2026,11,8,20,15),
@@ -31,7 +31,7 @@ class OrderCalculatorTest {
         List<String> result = orderCalculator.calculate(List.of(first,second),calculationProgram);
         assertEquals("Alex - 791,72",result.getFirst());
         assertEquals("Max - 460,15",result.getLast());
-//        assertTrue(newOrders.isEmpty());
+              assertTrue(newOrders.isEmpty());
 
     }
 }

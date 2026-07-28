@@ -6,19 +6,21 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AdapterTest {
 
-Adapter adapter = new Adapter();
+    Adapter adapter = new Adapter();
+
     @Test
-    void supports() {
-boolean result =adapter.supports("");
+    void supportsEmptyFile() {
+        boolean result = adapter.supports("");
         assertTrue(result);
     }
 //    @Test
-//    void supports() {
+//    void supportsFileWithotSymbol() {
 //        boolean result =adapter.supports("order");
 //        assertTrue(result);
 //    }
 //@Test
-//void supports() {
+//void supportsFileWithSymbol() {
 //    boolean result =adapter.supports(".");
 //    assertFalse(result);
+//}
 }
