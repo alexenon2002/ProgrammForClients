@@ -36,17 +36,17 @@ class FileWithoutTxtTest {
 
         assertEquals(
                 LocalDateTime.of(2024, 5, 10, 10, 15, 30),
-                order.getDateOfPurchaseOfCement()
+                order.dateOfPurchaseOfCement()
         );
 
         assertEquals(
                 "Ivan",
-                order.getBuyer()
+                order.buyer()
         );
 
         assertEquals(
                 500,
-                order.getNumberOfKilograms()
+                order.numberOfKilograms()
         );
     }
 

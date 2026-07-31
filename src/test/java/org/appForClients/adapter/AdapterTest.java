@@ -13,14 +13,16 @@ class AdapterTest {
         boolean result = adapter.supports("");
         assertTrue(result);
     }
-//    @Test
-//    void supportsFileWithotSymbol() {
-//        boolean result =adapter.supports("order");
-//        assertTrue(result);
-//    }
-//@Test
-//void supportsFileWithSymbol() {
-//    boolean result =adapter.supports(".");
-//    assertFalse(result);
-//}
+
+    @Test
+    void supportsFileWithoutSymbol() {
+        boolean result = adapter.supports("order");
+        assertTrue(result);
+    }
+
+    @Test
+    void supportsFileWithSymbol() {
+        boolean result = adapter.supports(".");
+        assertFalse(result);
+    }
 }

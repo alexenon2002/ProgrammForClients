@@ -1,30 +1,27 @@
 package org.appForClients.service;
 
-import org.appForClients.CalculationFunctional.CalculationProgram;
-import org.appForClients.CalculationFunctional.OrderCalculator;
-import org.appForClients.FileFilter.FileFilter;
-import org.appForClients.ResultWriter.ResultWriter;
+import org.appForClients.calculation.CalculationProgram;
+import org.appForClients.calculation.OrderCalculator;
+import org.appForClients.filter.FileFilter;
+import org.appForClients.writer.ResultWriter;
 import org.appForClients.model.Order;
-import org.appForClients.reader.ReaderForOrder;
 
 import java.io.IOException;
 import java.util.List;
 
-public class OrderService {
+public record OrderService(FileFilter fileFilter, OrderCalculator calculator, ResultWriter writer) {
 
-    private final FileFilter fileFilter = new FileFilter();
-    private final OrderCalculator calculator = new OrderCalculator();
-    private final ResultWriter writer = new ResultWriter();
+    public OrderService() {
+        this(new FileFilter(), new OrderCalculator(), new ResultWriter());
+    }
 
 
     public void process(String fileName, CalculationProgram config) throws IOException {
 
-        ReaderForOrder reader = fileFilter.getReader(fileName);
+        List<Order> orders = fileFilter
+                .getReader(fileName)
+                .catalog(fileName);
 
-        List<Order> orders = reader.catalog(fileName);
-
-        List<String> result = calculator.calculate(orders, config);
-
-        writer.write(result);
+        writer.write(calculator.calculate(orders, config));
     }
 }
