@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface ReaderForOrder {
 
-        boolean supports (String fileName);
+    boolean supports(String fileName);
 
-        List<Order> catalog (String fileName) throws IOException;
+    List<Order> catalog(String fileName) throws IOException;
 
 
 }

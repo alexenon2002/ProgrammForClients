@@ -24,17 +24,18 @@ class FileWithTxtTest {
 
     @Test
     void shouldNotSupportNotTxtFile() {
-FileWithTxt fileWithTxt = new FileWithTxt();
-assertFalse(fileWithTxt.supports("order.svm"));
+        FileWithTxt fileWithTxt = new FileWithTxt();
+        assertFalse(fileWithTxt.supports("order.svm"));
     }
 
     @Test
     void shouldSupportIsEmptyFile() throws IOException {
-        Path file = File.createTempFile("empty","file").toPath();
+        Path file = File.createTempFile("empty", "file").toPath();
         FileWithTxt fileWithTxt = new FileWithTxt();
         List<Order> orders = fileWithTxt.catalog(file.toString());
         assertTrue(orders.isEmpty());
     }
+
     @Test
     void shouldReadOrdersFromFile() throws IOException {
         Path file = File.createTempFile("orders", "txt").toPath();
@@ -55,23 +56,24 @@ assertFalse(fileWithTxt.supports("order.svm"));
     }
 
     @Test
-    void shouldThrowExceptionWhenDateIsWrong() throws IOException{
-        Path file = File.createTempFile("order","txt").toPath();
-        Files.writeString(file,"wrong-date|Ivan|500");
+    void shouldThrowExceptionWhenDateIsWrong() throws IOException {
+        Path file = File.createTempFile("order", "txt").toPath();
+        Files.writeString(file, "wrong-date|Ivan|500");
         FileWithTxt reader = new FileWithTxt();
-        assertThrows(DateTimeParseException.class,() -> reader.catalog(file.toString()));
+        assertThrows(DateTimeParseException.class, () -> reader.catalog(file.toString()));
     }
 
     @Test
-    void shouldThrowIOExceptionWhenFileDoesNotExist(){
+    void shouldThrowIOExceptionWhenFileDoesNotExist() {
         FileWithTxt reader = new FileWithTxt();
-        assertThrows(IOException.class,() ->reader.catalog("orders.txt"));
+        assertThrows(IOException.class, () -> reader.catalog("orders.txt"));
     }
+
     @Test
     void shouldThrowExceptionWhenKilogramsAreWrong() throws IOException {
-        Path file = File.createTempFile("wrong-number","txt").toPath();
-       Files.writeString(file,"2024-10-10T10:15:20|Alex|wrong");
-       FileWithTxt reader = new FileWithTxt();
-       assertThrows(NumberFormatException.class,() ->reader.catalog(file.toString()));
+        Path file = File.createTempFile("wrong-number", "txt").toPath();
+        Files.writeString(file, "2024-10-10T10:15:20|Alex|wrong");
+        FileWithTxt reader = new FileWithTxt();
+        assertThrows(NumberFormatException.class, () -> reader.catalog(file.toString()));
     }
 }

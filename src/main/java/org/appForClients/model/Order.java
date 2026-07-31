@@ -8,13 +8,13 @@ public class Order {
     private final String buyer;
     private final int numberOfKilograms;
 
-    public Order(  final LocalDateTime dateOfPurchaseOfCement, String buyer, int numberOfKilograms) {
+    public Order(final LocalDateTime dateOfPurchaseOfCement, String buyer, int numberOfKilograms) {
         this.dateOfPurchaseOfCement = dateOfPurchaseOfCement;
         this.buyer = buyer;
         this.numberOfKilograms = numberOfKilograms;
     }
 
-    public   LocalDateTime getDateOfPurchaseOfCement() {
+    public LocalDateTime getDateOfPurchaseOfCement() {
         return dateOfPurchaseOfCement;
     }
 

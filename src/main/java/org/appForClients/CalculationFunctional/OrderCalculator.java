@@ -8,12 +8,9 @@ import java.util.List;
 
 public class OrderCalculator {
 
-    public List<String> calculate(List<Order> orders,
-                                  CalculationProgram config) {
+    public List<String> calculate(List<Order> orders, CalculationProgram config) {
 
-        List<Order> sortedOrders = orders.stream()
-                .sorted(Comparator.comparing(Order::getDateOfPurchaseOfCement))
-                .toList();
+        List<Order> sortedOrders = orders.stream().sorted(Comparator.comparing(Order::getDateOfPurchaseOfCement)).toList();
 
         List<String> result = new ArrayList<>();
 
@@ -21,8 +18,7 @@ public class OrderCalculator {
 
         for (Order order : sortedOrders) {
 
-            double bags = (double) order.getNumberOfKilograms()
-                    / config.getBagWeight();
+            double bags = (double) order.getNumberOfKilograms() / config.getBagWeight();
 
             double price = bags * config.getBagPrice();
 

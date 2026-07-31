@@ -13,14 +13,8 @@ public class FileWithoutTxt {
 
     public List<Order> decrypts(String fileName) throws IOException {
 
-        try (Stream<String> lines =Files.lines(Paths.get(fileName))) {
-            return lines
-                    .map(line -> line.split("#"))
-                    .map(name -> new Order(
-                            LocalDateTime.parse(name[0]),
-                            name[1],
-                            Integer.parseInt(name[2])))
-                    .toList();
+        try (Stream<String> lines = Files.lines(Paths.get(fileName))) {
+            return lines.map(line -> line.split("#")).map(name -> new Order(LocalDateTime.parse(name[0]), name[1], Integer.parseInt(name[2]))).toList();
         }
     }
 }

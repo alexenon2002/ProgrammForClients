@@ -1,0 +1,78 @@
+package org.appForClients.service;
+
+import org.appForClients.CalculationFunctional.CalculationProgram;
+import org.appForClients.CalculationFunctional.OrderCalculator;
+import org.appForClients.FileFilter.FileFilter;
+import org.appForClients.ResultWriter.ResultWriter;
+import org.appForClients.model.Order;
+import org.appForClients.reader.ReaderForOrder;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.List;
+
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.*;
+
+@ExtendWith(MockitoExtension.class)
+class OrderServiceTest {
+
+    @ExtendWith(MockitoExtension.class)
+
+    @Mock
+    private FileFilter fileFilter;
+
+    @Mock
+    private OrderCalculator calculator;
+
+    @Mock
+    private ResultWriter writer;
+
+    @Mock
+    private ReaderForOrder reader;
+
+
+    @Test
+    void shouldProcessOrders() throws IOException {
+        OrderService orderService = new OrderService(fileFilter, calculator, writer);
+
+        CalculationProgram calculationProgram =
+                new CalculationProgram(300, 40, 25, 3);
+
+        List<Order> orders = List.of(new Order(
+                LocalDateTime.of(2025, 10, 10, 22, 25, 10),
+                "Alex", 400));
+
+        List<String> result = List.of("Alex : 3000");
+        when(fileFilter.getReader("orders.txt"))
+                .thenReturn(reader);
+        when(reader.catalog("orders.txt"))
+                .thenReturn(orders);
+        when(calculator.calculate(orders, calculationProgram))
+                .thenReturn(result);
+        orderService.process("orders.txt", calculationProgram);
+        verify(fileFilter).getReader("orders.txt");
+        verify(reader).catalog("orders.txt");
+        verify(calculator).calculate(orders, calculationProgram);
+        verify(writer).write(result);
+    }
+
+    @Test
+    void shouldThrowIOExceptionWhenReadingFileFails() throws IOException {
+        OrderService orderService = new OrderService(fileFilter, calculator, writer);
+        CalculationProgram calculationProgram = new CalculationProgram(400, 40, 40, 4);
+        when(fileFilter.getReader("orders.txt"))
+                .thenReturn(reader);
+        when(reader.catalog("orders.txt"))
+                .thenThrow(new IOException());
+
+        assertThrows(IOException.class, () -> orderService.process("orders.txt", calculationProgram));
+        verify(calculator, never()).calculate(any(), any());
+        verify(writer, never()).write(any());
+    }
+}

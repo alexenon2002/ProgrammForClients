@@ -8,14 +8,9 @@ import java.io.IOException;
 
 public class Main {
 
-     static void main(String[] args) throws IOException {
+    static void main(String[] args) throws IOException {
 
-        CalculationProgram config = new CalculationProgram(
-                500,
-                50,
-                50,
-                5
-        );
+        CalculationProgram config = new CalculationProgram(500, 50, 50, 5);
 
         OrderService orderService = new OrderService();
 

@@ -18,7 +18,7 @@ public class Adapter implements ReaderForOrder {
     }
 
     @Override
-    public List<Order> catalog (String fileName) throws IOException {
+    public List<Order> catalog(String fileName) throws IOException {
 
         return adapter.decrypts(fileName);
 

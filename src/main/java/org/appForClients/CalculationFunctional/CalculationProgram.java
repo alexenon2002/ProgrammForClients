@@ -1,16 +1,13 @@
 package org.appForClients.CalculationFunctional;
 
-public class CalculationProgram{
+public class CalculationProgram {
 
     private final double bagPrice;
     private final int bagWeight;
     private final int startDiscount;
     private final int discountStep;
 
-    public CalculationProgram(double bagPrice,
-                             int bagWeight,
-                             int startDiscount,
-                             int discountStep) {
+    public CalculationProgram(double bagPrice, int bagWeight, int startDiscount, int discountStep) {
         this.bagPrice = bagPrice;
         this.bagWeight = bagWeight;
         this.startDiscount = startDiscount;

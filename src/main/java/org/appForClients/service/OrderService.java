@@ -12,9 +12,19 @@ import java.util.List;
 
 public class OrderService {
 
-    private final FileFilter fileFilter = new FileFilter();
-    private final OrderCalculator calculator = new OrderCalculator();
-    private final ResultWriter writer = new ResultWriter();
+    private final FileFilter fileFilter;
+    private final OrderCalculator calculator;
+    private final ResultWriter writer;
+
+    public OrderService() {
+        this(new FileFilter(), new OrderCalculator(), new ResultWriter());
+    }
+
+    public OrderService(FileFilter fileFilter, OrderCalculator calculator, ResultWriter writer) {
+        this.fileFilter = fileFilter;
+        this.calculator = calculator;
+        this.writer = writer;
+    }
 
 
     public void process(String fileName, CalculationProgram config) throws IOException {
