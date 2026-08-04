@@ -14,11 +14,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class FileWithoutTxtTest {
 
+    private static final String SUFFIX = ".txt";
 
     @Test
     void shouldReadOrdersFromFile() throws IOException {
 
-        Path file = Files.createTempFile("orders", ".txt");
+        Path file = Files.createTempFile("orders", SUFFIX);
 
         Files.writeString(file,
                 "2024-05-10T10:15:30#Ivan#500");
@@ -32,7 +33,7 @@ class FileWithoutTxtTest {
 
         assertEquals(1, orders.size());
 
-        Order order = orders.get(0);
+        Order order = orders.getFirst();
 
         assertEquals(
                 LocalDateTime.of(2024, 5, 10, 10, 15, 30),
@@ -54,7 +55,7 @@ class FileWithoutTxtTest {
     @Test
     void shouldReturnEmptyListWhenFileIsEmpty() throws IOException {
 
-        Path file = Files.createTempFile("empty", ".txt");
+        Path file = Files.createTempFile("empty", SUFFIX);
 
 
         FileWithoutTxt reader = new FileWithoutTxt();
@@ -76,7 +77,7 @@ class FileWithoutTxtTest {
     @Test
     void shouldThrowExceptionWhenDateIsWrong() throws IOException {
 
-        Path file = Files.createTempFile("wrong-date", ".txt");
+        Path file = Files.createTempFile("wrong-date", SUFFIX);
 
         Files.writeString(file,
                 "hello#Ivan#500");

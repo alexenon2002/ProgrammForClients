@@ -24,4 +24,13 @@ public record OrderService(FileFilter fileFilter, OrderCalculator calculator, Re
 
         writer.write(calculator.calculate(orders, config));
     }
+
+    @Override
+    public String toString() {
+        return "OrderService[" +
+                "fileFilter=" + fileFilter + ", " +
+                "calculator=" + calculator + ", " +
+                "writer=" + writer + ']';
+    }
+
 }

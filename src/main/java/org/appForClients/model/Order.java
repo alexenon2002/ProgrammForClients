@@ -4,4 +4,13 @@ import java.time.LocalDateTime;
 
 public record Order(LocalDateTime dateOfPurchaseOfCement, String buyer, int numberOfKilograms) {
 
+    @Override
+    public String toString() {
+        return "Order[" +
+                "dateOfPurchaseOfCement=" + dateOfPurchaseOfCement + ", " +
+                "buyer=" + buyer + ", " +
+                "numberOfKilograms=" + numberOfKilograms + ']';
+    }
+
+
 }

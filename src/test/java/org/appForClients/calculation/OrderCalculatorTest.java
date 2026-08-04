@@ -4,6 +4,7 @@ import org.appForClients.model.Order;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,8 +13,6 @@ class OrderCalculatorTest {
 
     @Test
     void calculate() {
-
-        List<String> newOrders = List.of();
 
         Order first = new Order(LocalDateTime.of
                 (2026, 11, 8, 20, 15),
@@ -32,7 +31,13 @@ class OrderCalculatorTest {
                 calculate(List.of(first, second), calculationProgram);
         assertEquals("Alex - 791,72", result.getFirst());
         assertEquals("Max - 460,15", result.getLast());
-        assertTrue(newOrders.isEmpty());
+    }
 
+    @Test
+    void shouldShowAnEmptyList() {
+        List<String> newOrders = new ArrayList<>();
+        newOrders.add("Order");
+        newOrders.removeFirst();
+        assertTrue(newOrders.isEmpty());
     }
 }

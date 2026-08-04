@@ -25,6 +25,9 @@ class OrderServiceTest {
     @ExtendWith(MockitoExtension.class)
 
     @Mock
+    private static final String FILE_TYPE = "orders.txt";
+
+    @Mock
     private FileFilter fileFilter;
 
     @Mock
@@ -49,15 +52,15 @@ class OrderServiceTest {
                 "Alex", 400));
 
         List<String> result = List.of("Alex : 3000");
-        when(fileFilter.getReader("orders.txt"))
+        when(fileFilter.getReader(FILE_TYPE))
                 .thenReturn(reader);
-        when(reader.catalog("orders.txt"))
+        when(reader.catalog(FILE_TYPE))
                 .thenReturn(orders);
         when(calculator.calculate(orders, calculationProgram))
                 .thenReturn(result);
-        orderService.process("orders.txt", calculationProgram);
-        verify(fileFilter).getReader("orders.txt");
-        verify(reader).catalog("orders.txt");
+        orderService.process(FILE_TYPE, calculationProgram);
+        verify(fileFilter).getReader(FILE_TYPE);
+        verify(reader).catalog(FILE_TYPE);
         verify(calculator).calculate(orders, calculationProgram);
         verify(writer).write(result);
     }
@@ -66,13 +69,13 @@ class OrderServiceTest {
     void shouldThrowIOExceptionWhenReadingFileFails() throws IOException {
         OrderService orderService = new OrderService(fileFilter, calculator, writer);
         CalculationProgram calculationProgram = new CalculationProgram(400, 40, 40, 4);
-        when(fileFilter.getReader("orders.txt"))
+        when(fileFilter.getReader(FILE_TYPE))
                 .thenReturn(reader);
-        when(reader.catalog("orders.txt"))
+        when(reader.catalog(FILE_TYPE))
                 .thenThrow(new IOException());
 
         assertThrows(IOException.class,
-                () -> orderService.process("orders.txt", calculationProgram));
+                () -> orderService.process(FILE_TYPE, calculationProgram));
         verify(calculator, never()).calculate(any(), any());
         verify(writer, never()).write(any());
     }

@@ -7,6 +7,7 @@ import org.appForClients.reader.ReaderForOrder;
 import java.util.List;
 
 public class FileFilter {
+    private static final String UNKNOWN_FILE_FORMAT = "Неизвестный формат файла";
     private final List<ReaderForOrder> readers = List.of(new FileWithTxt(), new Adapter());
 
     public ReaderForOrder getReader(String fileName) {
@@ -14,6 +15,6 @@ public class FileFilter {
         return readers.stream()
                 .filter(reader -> reader.supports(fileName))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Неизвестный формат файла"));
+                .orElseThrow(() -> new IllegalArgumentException(UNKNOWN_FILE_FORMAT));
     }
 }

@@ -9,12 +9,12 @@ import java.io.IOException;
 import java.util.List;
 
 public class Adapter implements ReaderForOrder {
-
+    private static final String FULL_STOP = ".";
     private final FileWithoutTxt adapter = new FileWithoutTxt();
 
     @Override
     public boolean supports(String fileName) {
-        return !fileName.contains(".");
+        return !fileName.contains(FULL_STOP);
     }
 
     @Override

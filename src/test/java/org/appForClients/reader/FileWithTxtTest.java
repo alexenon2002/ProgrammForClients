@@ -16,6 +16,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class FileWithTxtTest {
 
+    private static final String SUFFIX = ".txt";
+
     @Test
     void shouldSupportTxtFile() {
         FileWithTxt fileWithTxt = new FileWithTxt();
@@ -38,7 +40,7 @@ class FileWithTxtTest {
 
     @Test
     void shouldReadOrdersFromFile() throws IOException {
-        Path file = File.createTempFile("orders", "txt").toPath();
+        Path file = File.createTempFile("orders", SUFFIX).toPath();
         Files.write(file, List.of("2024-07-23T10:15:22|Ivan|250", "2024-04-24T13:24:56|Petr|400"));
         FileWithTxt reader = new FileWithTxt();
         List<Order> orders = reader.catalog(file.toString());
@@ -57,7 +59,7 @@ class FileWithTxtTest {
 
     @Test
     void shouldThrowExceptionWhenDateIsWrong() throws IOException {
-        Path file = File.createTempFile("order", "txt").toPath();
+        Path file = File.createTempFile("order", SUFFIX).toPath();
         Files.writeString(file, "wrong-date|Ivan|500");
         FileWithTxt reader = new FileWithTxt();
         assertThrows(DateTimeParseException.class, () -> reader.catalog(file.toString()));
@@ -71,7 +73,7 @@ class FileWithTxtTest {
 
     @Test
     void shouldThrowExceptionWhenKilogramsAreWrong() throws IOException {
-        Path file = File.createTempFile("wrong-number", "txt").toPath();
+        Path file = File.createTempFile("wrong-number", SUFFIX).toPath();
         Files.writeString(file, "2024-10-10T10:15:20|Alex|wrong");
         FileWithTxt reader = new FileWithTxt();
         assertThrows(NumberFormatException.class, () -> reader.catalog(file.toString()));

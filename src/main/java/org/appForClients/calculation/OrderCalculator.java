@@ -7,6 +7,8 @@ import java.util.Comparator;
 import java.util.List;
 
 public class OrderCalculator {
+    private static final String DASH = " - ";
+    private static final String QUANTITY = "%.2f";
 
     public List<String> calculate(List<Order> orders, CalculationProgram config) {
 
@@ -26,7 +28,7 @@ public class OrderCalculator {
 
             double total = price * (100 - discount) / 100.0;
 
-            result.add(order.buyer() + " - " + String.format("%.2f", total));
+            result.add(order.buyer() + DASH + String.format(QUANTITY, total));
 
             discount = Math.max(0, discount - config.discountStep());
         }
