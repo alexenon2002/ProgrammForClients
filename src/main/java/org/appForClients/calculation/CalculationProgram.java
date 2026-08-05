@@ -1,7 +1,5 @@
 package org.appForClients.calculation;
 
-import java.util.Objects;
-
 public record CalculationProgram(double bagPrice, int bagWeight, int startDiscount, int discountStep) {
 
     @Override
